@@ -11,8 +11,11 @@ block content
              tr
                 th Name
                 th Price
+                th Actions
         tbody 
             each product in products
                 tr
                     td=Product.name
-                    td=Product.price       
+                    td=Product.price     
+                    td
+                        a(href="/products/"+product._id, class="btn btn-danger") Delete
