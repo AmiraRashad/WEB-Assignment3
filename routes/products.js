@@ -18,9 +18,18 @@ router.post('/add', async function(req, res, next) {
   });
 
   router.get('/delete/:id', async function(req, res, next) {
-    let  product= new Product(req.body);
-    await product.save();
+    let  product= Product.findByIdAndDelete(req.params.id);
     res.redirect("/products");
+  });
+  router.get('/edit/:id', async function(req, res, next) {
+    let  product= Product.findByIdAndDelete(req.params.id);
+    res.render("/products/edit", {product});
+  });
+  router.post('/edit/:id', async function(req, res, next) {
+   Product.name =req.body.name;
+   Product.price=req.body.price;
+   await product.save();
+    res.render("products");
   });
 
 module.exports = router;
