@@ -1,11 +1,11 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 var Product = require("../DB/product");
 /* GET home page. */
 router.get('/', async function(req, res, next) {
-    let products = await Product.find();
-    console.log(products);
-  res.render("/products/list", {title: "Products in DB", products });
+    let Products = await Product.find();
+    console.log(Products);
+  res.render("/products/list", {title: "Products in DB", Products });
 });
 router.get('/add', async function(req, res, next) {
    
