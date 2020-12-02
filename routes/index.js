@@ -5,4 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   res.render('index', { title : 'Layers'});
 });
+router.get('/MyCart', function(req, res, next) {
+  res.render('MyCart', { title : 'Your Items'});
+});
 module.exports = router;
