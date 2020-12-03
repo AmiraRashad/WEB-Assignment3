@@ -5,7 +5,12 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   res.render('index', { title : 'Layers'});
 });
+
 router.get('/MyCart', function(req, res, next) {
-  res.render('MyCart', { title : 'Your Items'});
+  let MyCart = req.cookies.MyCart;
+  if (!MyCart) MyCart=[];
+  console.log("fetching");
+  res.render('MyCart', {MyCart });
 });
+
 module.exports = router;

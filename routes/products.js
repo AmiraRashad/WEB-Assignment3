@@ -1,4 +1,5 @@
 var express = require('express');
+const product = require('../DB/product');
 var router = express.Router();
 var Product = require("../DB/product");
 /* GET home page. */
@@ -22,9 +23,14 @@ router.get("/delete/:id", async function (req, res, next) {
  res.redirect("/products");
 });
 
+
 router.get("/MyCart/:id", async function (req, res, next) {
   let product = await Product.findById(req.params.id);
   console.log("Adding to Cart");
+  let MyCart =[];
+  if(req.cookies.MyCart) MyCart = req.cookies.MyCart;
+  MyCart.push(product);
+  res.cookie("MyCart", MyCart);
   res.redirect("/products");
  });
 router.get("/edit/:id", async function (req, res, next) {
