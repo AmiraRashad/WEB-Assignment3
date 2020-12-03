@@ -1,11 +1,11 @@
 var express = require('express');
-const product = require('../DB/product');
+const product = require('../model/product');
 var router = express.Router();
-var Product = require("../DB/product");
+var Product = require("../model/product");
 /* GET home page. */
 router.get("/", async function (req, res, next) {
   let products = await Product.find();
-  console.log(products);
+  console.log(req.session.user);
   res.render("products/list", { title: "Products in DB", products });
 });
 router.get("/add", async function (req, res, next) {
@@ -32,6 +32,14 @@ router.get("/MyCart/:id", async function (req, res, next) {
   MyCart.push(product);
   res.cookie("MyCart", MyCart);
   res.redirect("/products");
+ });
+ router.get("/MyCart/remove/:id", async function (req, res, next) {
+  let MyCart =[];
+  if(req.cookies.MyCart) MyCart = req.cookies.MyCart;
+  MyCart.splice(
+    MyCart.findIndex((c)=>(c._id==req.params.id)),1);
+  res.cookie("MyCart", MyCart);
+  res.redirect("/MyCart");
  });
 router.get("/edit/:id", async function (req, res, next) {
   let product = await Product.findById(req.params.id);
