@@ -2,13 +2,14 @@ var express = require('express');
 const product = require('../model/product');
 var router = express.Router();
 var Product = require("../model/product");
+var checksessionAuth = require("../middleware/checksessionAuth");
 /* GET home page. */
 router.get("/", async function (req, res, next) {
   let products = await Product.find();
   console.log(req.session.user);
   res.render("products/list", { title: "Products in DB", products });
 });
-router.get("/add", async function (req, res, next) {
+router.get("/add",checksessionAuth, async function (req, res, next) {
   res.render("products/add");
 });
 // store in db

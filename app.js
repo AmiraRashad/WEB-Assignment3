@@ -7,10 +7,11 @@ var mongoose = require("mongoose");
 var indexRouter = require("./routes/index");
 var productsRouter = require("./routes/products");
 var UsersRouter = require("./routes/users");
-var session = require('express-session');
-var sessionAuth = require('./middleware/sessionAuth');
+var session = require("express-session");
+var sessionAuth = require("./middleware/sessionAuth");
 var app = express();
-app.use(session({
+app.use(session(
+  {
   secret:'keyboard cat',
   resave: false,
   saveUninitialized: true,
