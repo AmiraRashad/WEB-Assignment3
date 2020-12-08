@@ -5,6 +5,9 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   res.render('index', { title : 'Layers'});
 });
+router.get('/contactus', function(req,res,next) {
+  res.render('contactus', {title : 'Contact US'});
+});
 
 router.get('/MyCart', function(req, res, next) {
   let MyCart = req.cookies.MyCart;

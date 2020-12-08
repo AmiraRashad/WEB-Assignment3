@@ -9,6 +9,7 @@ var productsRouter = require("./routes/products");
 var UsersRouter = require("./routes/users");
 var session = require("express-session");
 var sessionAuth = require("./middleware/sessionAuth");
+
 var app = express();
 app.use(session(
   {
